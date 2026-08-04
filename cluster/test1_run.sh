@@ -30,7 +30,7 @@ A_PNG="./real_holdout"
 B_PNG="./real_rest"
 
 echo "--- building A (held-out) and B (rest) magnitude PNGs ---"
-python test1_prep.py --shard "$SHARD" --shard_meta "$META" \
+python fid_real_vs_real_prep.py --shard "$SHARD" --shard_meta "$META" \
   --a_out "$A_PNG" --b_out "$B_PNG"
 
 echo "A (held-out) PNGs: $(ls "$A_PNG" | wc -l)"

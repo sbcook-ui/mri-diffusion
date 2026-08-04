@@ -31,7 +31,7 @@ IQ_PNG="./iq_png"
 FAM_PNG="./fam_png"
 
 echo "--- building 3000 IQ + all FAM magnitude PNGs ---"
-python test2_prep.py \
+python fid_different_scan_prep.py \
   --iq_shard "$IQ_SHARD"  --iq_meta  "$IQ_META" \
   --fam_shard "$FAM_SHARD" --fam_meta "$FAM_META" \
   --n_iq 3000 --seed 0 --iq_out "$IQ_PNG" --fam_out "$FAM_PNG"
