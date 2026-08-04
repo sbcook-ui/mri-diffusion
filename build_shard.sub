@@ -1,0 +1,28 @@
+# build_shard.sub - CHTC submit file for building the data shard.
+# CPU-only job; validates container + staging + submit setup before the GPU run.
+
+universe = container
+container_image = docker://sabcook/fam-diffusion:v1
+
+# script that runs inside the container
+executable = build_shard.sh
+
+# bring the converter script along with the job
+transfer_input_files = build_shard.py
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+
+# access to /staging (where the .mat files and output .dat live)
+requirements = (Target.HasCHTCStaging == true)
+
+# logs (written to home, help debug)
+output = build_shard.out
+error  = build_shard.err
+log    = build_shard.log
+
+# resources: light CPU job. The shard is ~11GB so give disk headroom.
+request_cpus   = 1
+request_memory = 8GB
+request_disk   = 4GB
+
+queue
