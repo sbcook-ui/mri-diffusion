@@ -4,8 +4,7 @@ Sam Cook, Xiao Shi, Jiayi Tang, Diego Hernando, Ulugbek Kamilov
 
 UW-Madison ECE Summer Program for Advanced Research and Knowledge (SPARK), Summer 2026
 
-<!-- Optional cover figure. Put an image (e.g. a real scan next to a generated slice) in a figures/ folder and uncomment. -->
-<!-- ![cover](figures/cover.png) -->
+![cover](figures/cover.png)
 
 ## Overview
 
