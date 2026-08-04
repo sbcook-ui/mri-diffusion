@@ -91,17 +91,21 @@ The paired `.sh` / `.sub` files are HTCondor job scripts for running these on th
 ## Implementation detail
 
 ```
-train.py                        # DDPM training loop around the ADM U-Net (mode flags set size/steps)
-sample.py                       # DDPM ancestral sampling from a checkpoint; saves PNGs + raw .npy
-adm_unet.py                     # Self-contained ADM UNetModel (k-space/coil code stripped)
-capture_diffusion.py            # Captures the reverse diffusion process (t=999 -> t=0)
-memorization_check.py           # Nearest-neighbor memorization test (SSIM)
-memorization_check_psnr.py      # Nearest-neighbor memorization test (PSNR)
-fid_prep.py                     # Prepares generated/real images for FID computation
+train.py                         # DDPM training loop around the ADM U-Net
+sample.py                        # DDPM ancestral sampling from a checkpoint; saves PNGs + raw .npy
+adm_unet.py                      # Self-contained ADM UNetModel (k-space/coil code stripped)
+capture_diffusion.py             # Captures the reverse diffusion process (t=999 to t=0)
 │
-├── preprocessing/              # Builds the memory-mapped training shard from raw scans
-├── configs/                    # Experiment configuration files
-└── scripts/                    # Helper / job scripts
+├── evaluation/                  # Memorization tests and FID prep scripts
+│      ├── memorization_check.py          # Nearest-neighbor memorization test (SSIM)
+│      ├── memorization_check_psnr.py     # Nearest-neighbor memorization test (PSNR)
+│      ├── fid_prep.py                    # Prepares generated/real images for FID
+│      ├── fid_real_vs_real_prep.py       # Real-vs-real FID baseline
+│      └── fid_different_scan_prep.py     # FID against a different real scan type (IDEAL IQ)
+├── preprocessing/               # Builds the memory-mapped training shard from raw scans
+├── cluster/                     # HTCondor job scripts (.sh / .sub)
+├── results/                     # Saved metric CSVs (mem_gen.csv, mem_iq.csv)
+└── figures/                     # Cover image
 ```
 
 ## Code references
